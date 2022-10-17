@@ -1,0 +1,39 @@
+.wrap {
+  display: flex;
+  justify-content: center;
+  height: 180px; 
+}
+.inner_wrap {
+  width: 80%;
+}
+
+h2 {
+  margin: 0;
+  margin-bottom: 20px;
+  text-align: left;
+  color: white;
+  font-weight: lighter;
+}
+
+.search_bar {
+  display: flex;
+  justify-content: center;
+  vertical-align: center;
+}
+.search {
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: 2px;
+  background: rgba(60, 60, 60, 0.6);
+  border: 0;
+  color: white;
+  outline: none;
+  font-size: 15px;
+  margin-right: 10px;
+}
+.submit {
+  padding: 10px 40px;
+  border-radius: 2px;
+  background-color: #f65261;
+  color: white;
+}

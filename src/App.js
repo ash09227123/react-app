@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+/*
+ * @Author: Paul He Paul_He@epam.com
+ * @Date: 2022-10-17 13:58:28
+ * @LastEditors: Paul He Paul_He@epam.com
+ * @LastEditTime: 2022-10-17 16:18:38
+ * @FilePath: \react-app\src\App.js
+ * @Description:
+ *
+ * Copyright (c) 2022 by Paul He Paul_He@epam.com, All Rights Reserved.
+ */
+import "./App.css";
+import Counter from "./components/Counter";
+import TopBar from "./components/Topbar";
+import SearchBar from "./components/SearchBar";
+import Catalog from "./components/Catalog";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <TopBar />
+        <SearchBar />
       </header>
+      <section>
+        <Catalog />
+        <Counter />
+      </section>
     </div>
   );
 }

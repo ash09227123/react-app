@@ -1,0 +1,10 @@
+.bar_wrap{
+    padding:20px 40px;
+    display: flex;
+    justify-content: space-between;
+}
+.addM{
+    padding: 10px 16px;
+    color: #F65261;
+    background: rgba(100, 100, 100, 0.6);
+}
