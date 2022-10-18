@@ -6,8 +6,11 @@
 }
 
 .catalog {
-  color: white;
+  color: rgb(158, 158, 158);
   display: flex;
+}
+.selected{
+  color: white;
 }
 .catalog > div:not(:last-child) {
   margin-right: 20px;
