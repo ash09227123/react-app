@@ -2,7 +2,7 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-10-17 16:03:27
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-10-18 15:14:42
+ * @LastEditTime: 2022-10-31 18:35:15
  * @FilePath: \react-app\src\components\Catalog\index.jsx
  * @Description:
  *
@@ -33,12 +33,13 @@ class Catalog extends PureComponent {
       <>
         <div className="clasify_wrap">
           <div className="catalog">
-            {this.state.cateTypes.map((cate) => {
+            {this.state.cateTypes.map((cate,index) => {
               const { text, checked } = cate;
               return (
                 <div
                   onClick={() => (!checked ? this.switchCate(text) : false)}
                   className={checked ? "selected" : ""}
+                  key={index}
                 >
                   {text}
                 </div>
