@@ -1,11 +1,12 @@
 .clasify_wrap {
   display: flex;
   justify-content: space-between;
-  line-height: 3;
+  line-height: 4;
   border-bottom: 2px solid #555555;
 }
 
 .catalog {
+  font-size: 18px;
   color: rgb(158, 158, 158);
   display: flex;
 }

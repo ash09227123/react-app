@@ -12,7 +12,6 @@ code {
     monospace;
 }
 .App {
-  height: 100vh;
   background-color: #555555;
 }
 header {
@@ -31,6 +30,5 @@ button:active {
 }
 section {
   background-color: rgba(0, 0, 0, 0.4);
-  padding: 0 30px;
-  min-height: calc(100vh - 265px);
+  padding: 0 50px; 
 }
