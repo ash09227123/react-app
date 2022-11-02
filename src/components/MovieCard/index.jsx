@@ -2,13 +2,15 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-10-31 18:12:25
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-11-01 15:13:26
+ * @LastEditTime: 2022-11-02 10:46:52
  * @FilePath: \react-app\src\components\MovieCard\index.jsx
  * @Description:
  *
  * Copyright (c) 2022 by Paul He Paul_He@epam.com, All Rights Reserved.
  */
 import React from "react";
+import PropTypes from "prop-types";
+
 import "./index.less";
 
 const MovieCard = function (props) {
@@ -38,4 +40,9 @@ const MovieCard = function (props) {
   );
 };
 
+MovieCard.PropTypes = {
+  title: PropTypes.string.isRequired,
+  year: PropTypes.string.isRequired,
+  pic: PropTypes.string.isRequired,
+};
 export default MovieCard;

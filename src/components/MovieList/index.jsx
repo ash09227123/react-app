@@ -2,7 +2,7 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-10-31 18:25:15
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-11-01 14:41:23
+ * @LastEditTime: 2022-11-02 14:52:11
  * @FilePath: \react-app\src\components\MovieList\index.jsx
  * @Description:
  *
@@ -31,14 +31,14 @@ let movieList = [
   {
     title: "Rick and Morthy",
     desc: "anidmati jhfng coplesae dl",
-    id: 24,
+    id: 25,
     pic: moviePic,
     year: 2004,
   },
   {
     title: "Rick and Morthy",
     desc: "anidmati jhfng coplesae dl",
-    id: 24,
+    id: 26,
     pic: moviePic,
     year: 2004,
   },
