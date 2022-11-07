@@ -2,7 +2,7 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-10-31 18:12:25
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-11-02 10:46:52
+ * @LastEditTime: 2022-11-07 17:17:55
  * @FilePath: \react-app\src\components\MovieCard\index.jsx
  * @Description:
  *
@@ -10,7 +10,7 @@
  */
 import React from "react";
 import PropTypes from "prop-types";
-
+ 
 import "./index.less";
 
 const MovieCard = function (props) {
@@ -40,9 +40,10 @@ const MovieCard = function (props) {
   );
 };
 
-MovieCard.PropTypes = {
+MovieCard.propTypes = {
   title: PropTypes.string.isRequired,
-  year: PropTypes.string.isRequired,
+  year: PropTypes.number.isRequired,
   pic: PropTypes.string.isRequired,
+  desc:PropTypes.string
 };
 export default MovieCard;
