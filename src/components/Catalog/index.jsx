@@ -2,13 +2,14 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-10-17 16:03:27
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-10-31 18:35:15
+ * @LastEditTime: 2022-11-08 19:10:16
  * @FilePath: \react-app\src\components\Catalog\index.jsx
  * @Description:
  *
  * Copyright (c) 2022 by Paul He Paul_He@epam.com, All Rights Reserved.
  */
 import React, { PureComponent } from "react";
+import SortList from "./component/SortList";
 import "./index.css";
 
 class Catalog extends PureComponent {
@@ -33,7 +34,7 @@ class Catalog extends PureComponent {
       <>
         <div className="clasify_wrap">
           <div className="catalog">
-            {this.state.cateTypes.map((cate,index) => {
+            {this.state.cateTypes.map((cate, index) => {
               const { text, checked } = cate;
               return (
                 <div
@@ -48,10 +49,12 @@ class Catalog extends PureComponent {
           </div>
           <div className="sort_type">
             <div>SORT BY</div>
-            <select name="sortType">
-              <option value="0">RELEASE DATE</option>
-              <option value="1">SHOW DATE</option>
-            </select>
+            <SortList
+              options={[
+                { name: "RELEASE DATE", value: 1 },
+                { name: "TIME LENGTH", value: 3 },
+              ]}
+            />
           </div>
         </div>
       </>

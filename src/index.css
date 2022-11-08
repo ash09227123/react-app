@@ -29,6 +29,6 @@ button:active {
   box-shadow: 0 0 6px 0 inset;
 }
 section {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 0 50px; 
 }
