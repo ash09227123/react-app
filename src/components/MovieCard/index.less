@@ -23,12 +23,52 @@
             background-color: #2A202D;
             border-radius: 18px;
             cursor: pointer;
+
             div {
                 width: 4px;
                 height: 4px;
                 background-color: white;
                 border-radius: 2px;
                 margin: 2px;
+            }
+        }
+
+        .oper_list {
+            position: absolute;
+            box-sizing: border-box;
+            padding-top: 25px;
+            padding-left: 0;
+            padding-bottom: 10px;
+            top: 15px;
+            right: 15px;
+            width: 190px;
+            background-color: #2A202D;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0;
+
+            li.oper_clz {
+                position: absolute;
+                top: 3px;
+                right: 8px;
+                color: white;
+                transform: scale(1.3, 1);
+            }
+
+            li {
+                list-style: none;
+            }
+
+            li:not(:first-child) {
+                box-sizing: border-box;
+                padding: 10px 20px;
+
+                text-align: left;
+                color: white;
+
+                &:hover {
+                    background-color: #F65261;
+                }
             }
         }
     }
@@ -76,6 +116,7 @@
             align-items: center;
             justify-content: center;
         }
+
     }
 
 }

@@ -2,16 +2,19 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-10-31 18:25:15
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-11-07 17:18:27
+ * @LastEditTime: 2022-11-08 18:40:17
  * @FilePath: \react-app\src\components\MovieList\index.jsx
  * @Description:
  *
  * Copyright (c) 2022 by Paul He Paul_He@epam.com, All Rights Reserved.
  */
-import React from "react";
+import React, { PureComponent } from "react";
+
 import MovieCard from "../MovieCard";
 import moviePic from "../../assets/home/movie.jpg";
 import MovieInfo from "../MoiveInfo";
+import MyModal from "../MyModal";
+import bus from "../../utils/bus";
 import "./index.less";
 
 let movieList = [
@@ -44,21 +47,53 @@ let movieList = [
     year: 2004,
   },
 ];
-const MovieList = function (props) {
-  let mlen = movieList.length;
-  return (
-    <>
-      <p className="seq">
-        <span className="seq_num">{mlen} </span>movie{mlen > 1 ? "s" : ""} found
-      </p>
-      <div className="move_row">
-        {movieList.map((movie) => (
-          <MovieCard {...movie} key={movie.id} />
-        ))}
-      </div>
-      <MovieInfo />
-    </>
-  );
-};
+
+class MovieList extends PureComponent {
+  state = {
+    infoCardShow: false,
+    infoType: "info",
+    msgShow: false,
+  };
+  componentDidMount() {
+    bus.on("eventbus", (data) => {
+      const { infoCardShow, type, msgShow } = data;
+      this.setState({
+        infoCardShow,
+        infoType: type,
+        msgShow,
+      });
+    });
+  }
+  render() {
+    let mlen = movieList.length;
+    const { infoType } = this.state;
+    return (
+      <>
+        <p className="seq">
+          <span className="seq_num">{mlen} </span>movie{mlen > 1 ? "s" : ""}{" "}
+          found
+        </p>
+        <div className="move_row">
+          {movieList.map((movie) => (
+            <MovieCard {...movie} key={movie.id} />
+          ))}
+        </div>
+        {this.state.infoCardShow ? <MovieInfo type={infoType} /> : null}
+        {this.state.msgShow ? (
+          <MyModal
+            width="686"
+            title="DELETE MOVIE"
+            onClose={() => this.setState({ msgShow: false })}
+            footer={<button className="submit">CONFIRM</button>}
+          >
+            <p style={{ color: "white", textAlign: "left" }}>
+              Are you sure you want to delete this movie?
+            </p>
+          </MyModal>
+        ) : null}
+      </>
+    );
+  }
+}
 
 export default MovieList;
