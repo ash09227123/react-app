@@ -2,7 +2,7 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-10-31 11:07:51
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-11-01 15:30:59
+ * @LastEditTime: 2022-11-11 17:42:12
  * @FilePath: \react-app\src\Containers\Home\index.jsx
  * @Description:
  *
@@ -17,6 +17,7 @@ import ErrorBoundery from "../../components/ErrorBoundery";
 import MovieList from "../../components/MovieList";
 import WithLoading from "../../components/WithLoading";
 import Footer from "../../components/Footer";
+import MovieInfo from "../../components/MovieInfo";
 
 import "./index.less";
 
@@ -25,11 +26,12 @@ const MovieListWithLoading = WithLoading(MovieList);
 export default function Home() {
   return (
     <>
-      <header>
+      <header> 
         <div className="header_bg"></div>
         <div className="header_content">
-          <TopBar />
-          <SearchBar />
+          {/* <TopBar />
+          <SearchBar /> */}
+          <MovieInfo />
         </div>
       </header>
       <section>

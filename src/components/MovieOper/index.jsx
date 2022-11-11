@@ -2,8 +2,8 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-11-07 15:52:25
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-11-08 18:07:46
- * @FilePath: \react-app\src\components\MoiveInfo\index.jsx
+ * @LastEditTime: 2022-11-11 16:36:35
+ * @FilePath: \react-app\src\components\MovieOper\index.jsx
  * @Description:
  *
  * Copyright (c) 2022 by Paul He Paul_He@epam.com, All Rights Reserved.
@@ -14,7 +14,7 @@ import { FormItem, Input } from "../Form";
 import MyModal from "../MyModal";
 import bus from "../../utils/bus";
 
-class MovieInfo extends PureComponent {
+class MovieOper extends PureComponent {
   state = {
     isEdit: true,
     isShow: false,
@@ -81,4 +81,4 @@ class MovieInfo extends PureComponent {
     );
   }
 }
-export default MovieInfo;
+export default MovieOper;

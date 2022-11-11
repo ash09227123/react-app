@@ -2,7 +2,7 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-11-08 18:51:51
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-11-08 19:49:42
+ * @LastEditTime: 2022-11-10 14:46:03
  * @FilePath: \react-app\src\components\Catalog\component\SortList\index.jsx
  * @Description:
  *
@@ -10,31 +10,10 @@
  */
 import React, { useState } from "react";
 import styled from "styled-components";
+import "./index.less";
 
 const SortList = function (props) {
-  const [curType, setCurType] = useState("RELEASE DATE");
-  const [listShow, setListShow] = useState(false);
-
-  const SortCompoent = styled.div`
-    position: relative;
-  `;
-  const CurrentType = styled.div`
-    color: white;
-    margin-right: 10px;
-    cursor: pointer;
-  `;
-  const SortList = styled.ul`
-    position: absolute;
-    padding: 0;
-    top: 50px;
-    width: 150px;
-    right: -8px;
-    margin: 0;
-    padding: 10px 0;
-    background-color: rgba(0, 0, 0);
-    border-radius: 4px;
-    z-index: 9999;
-  `;
+  const [curType, setCurType] = useState("RELEASE DATE"); 
   const Arrow = styled.div`
     position: absolute;
     top: 26px;
@@ -45,7 +24,44 @@ const SortList = function (props) {
     border-top: 7px solid rgba(0, 0, 0, 0);
     border-right: 6px solid rgba(246, 82, 97, 1);
     border-bottom: 7px solid rgba(0, 0, 0, 0);
+    transition: all ease-in 0.3s;
   `;
+  const SortList = styled.ul`
+    position: absolute;  
+    visibility:hidden;
+    padding: 0;
+    top: 48px;
+    width: 150px;
+    right: -8px;
+    margin: 0;
+    padding: 10px 0;
+    background-color: rgba(0, 0, 0);
+    border-radius: 4px;
+    z-index: 9999;
+    opacity:0;
+    transition: all ease-in-out 0.3s;
+  `;
+  const SortCompoent = styled.div`
+    position: relative;
+    &:hover {
+      ${Arrow} {
+        transform: rotate(-90deg) translate(-3px, 3px);
+      }
+      ${SortList} {
+        visibility:visible; 
+        opacity:1;
+        transform:translate(0px,5px)
+      }
+    }
+  `;
+  const CurrentType = styled.div`
+    width: 120px;
+    color: white;
+    margin-right: 10px;
+    cursor: pointer;
+    text-align: right;
+  `;
+
   const LiStyle = styled.li`
     list-style: none;
     padding: 10px 0;
@@ -58,26 +74,24 @@ const SortList = function (props) {
   const { options = [] } = props;
   return (
     <SortCompoent>
-      <CurrentType onClick={() => setListShow(true)}>{curType}</CurrentType>
+      <CurrentType >{curType}</CurrentType>
       <Arrow />
-      {listShow ? (
-        <SortList>
-          {options.map((option) => {
-            const { value, name } = option;
-            return (
-              <LiStyle
-                key={value}
-                onClick={() => {
-                  setCurType(name);
-                  setListShow(false);
-                }}
-              >
-                {name}
-              </LiStyle>
-            );
-          })}
-        </SortList>
-      ) : null}
+      <SortList>
+        {options.map((option) => {
+          const { value, name } = option;
+          return (
+            <LiStyle
+              key={value}
+              className={curType === name ? "sort_current" : ""}
+              onClick={() => {
+                setCurType(name); 
+              }}
+            >
+              {name}
+            </LiStyle>
+          );
+        })}
+      </SortList>
     </SortCompoent>
   );
 };

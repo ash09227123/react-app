@@ -2,7 +2,7 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-10-31 18:25:15
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-11-08 18:40:17
+ * @LastEditTime: 2022-11-11 16:16:18
  * @FilePath: \react-app\src\components\MovieList\index.jsx
  * @Description:
  *
@@ -12,7 +12,7 @@ import React, { PureComponent } from "react";
 
 import MovieCard from "../MovieCard";
 import moviePic from "../../assets/home/movie.jpg";
-import MovieInfo from "../MoiveInfo";
+import MovieOper from "../MovieOper";
 import MyModal from "../MyModal";
 import bus from "../../utils/bus";
 import "./index.less";
@@ -78,7 +78,7 @@ class MovieList extends PureComponent {
             <MovieCard {...movie} key={movie.id} />
           ))}
         </div>
-        {this.state.infoCardShow ? <MovieInfo type={infoType} /> : null}
+        {this.state.infoCardShow ? <MovieOper type={infoType} /> : null}
         {this.state.msgShow ? (
           <MyModal
             width="686"

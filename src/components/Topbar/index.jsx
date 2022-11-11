@@ -2,7 +2,7 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-10-17 15:48:12
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-11-08 17:04:11
+ * @LastEditTime: 2022-11-11 16:13:51
  * @FilePath: \react-app\src\components\Topbar\index.jsx
  * @Description:
  *
@@ -10,6 +10,7 @@
  */
 import React from "react";
 
+import BrandTitle from "../BrandTitle";
 import bus from "../../utils/bus";
 import "./index.less";
 
@@ -24,9 +25,7 @@ const TopBar = function () {
   return (
     <>
       <div className="bar_wrap">
-        <div className="title">
-          <span>netflix</span>roulette
-        </div>
+        <BrandTitle />
         <button className="addM" role="addM" onClick={movieInfovisibleHander}>
           + ADD MOVIE
         </button>
