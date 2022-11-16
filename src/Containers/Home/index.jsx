@@ -2,13 +2,13 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-10-31 11:07:51
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-11-11 17:42:12
+ * @LastEditTime: 2022-11-16 15:36:10
  * @FilePath: \react-app\src\Containers\Home\index.jsx
  * @Description:
  *
  * Copyright (c) 2022 by Paul He Paul_He@epam.com, All Rights Reserved.
  */
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import TopBar from "../../components/Topbar";
 import SearchBar from "../../components/SearchBar";
@@ -18,20 +18,35 @@ import MovieList from "../../components/MovieList";
 import WithLoading from "../../components/WithLoading";
 import Footer from "../../components/Footer";
 import MovieInfo from "../../components/MovieInfo";
+import bus from "../../utils/bus";
 
 import "./index.less";
 
 const MovieListWithLoading = WithLoading(MovieList);
 
 export default function Home() {
+  const [isDetail, setIsDetail] = useState(false);
+  const [curMovie, setCurMoive] = useState({});
+  useEffect(() => {
+    bus.on("eventbus", (data) => {
+      const { infoShow, movie } = data; 
+      setIsDetail(infoShow);
+      setCurMoive(movie);
+    });
+  }, []);
   return (
     <>
-      <header> 
+      <header>
         <div className="header_bg"></div>
         <div className="header_content">
-          {/* <TopBar />
-          <SearchBar /> */}
-          <MovieInfo />
+          {!isDetail ? (
+            <>
+              <TopBar />
+              <SearchBar />{" "}
+            </>
+          ) : (
+            <MovieInfo movie={curMovie} />
+          )}
         </div>
       </header>
       <section>
