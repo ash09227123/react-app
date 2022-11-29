@@ -2,7 +2,7 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-10-31 18:12:25
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-11-16 15:57:59
+ * @LastEditTime: 2022-11-29 17:10:03
  * @FilePath: \react-app\src\components\MovieCard\index.jsx
  * @overviewription:
  *
@@ -11,6 +11,7 @@
 import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import bus from "../../utils/bus";
+import { scrollToTop } from "@src/utils";
 
 import "./index.less";
 
@@ -34,6 +35,7 @@ const MovieCard = function (props) {
     setShowOp(false);
   };
   const onMovieCardClickHandler = function () {
+    scrollToTop();
     bus.emit("eventbus", { infoShow: true, movie: { ...props } });
   };
   return (
