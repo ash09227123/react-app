@@ -315,6 +315,7 @@ module.exports = function (webpackEnv) {
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         "react-native": "react-native-web",
         // Allows for better profiling with ReactDevTools
+        '@src':path.resolve('src'),
         ...(isEnvProductionProfile && {
           "react-dom$": "react-dom/profiling",
           "scheduler/tracing": "scheduler/tracing-profiling",
@@ -562,7 +563,7 @@ module.exports = function (webpackEnv) {
               type: "asset/resource",
             },
             // ** STOP ** Are you adding a new loader?
-            // Make sure to add the new loader(s) before the "file" loader. 
+            // Make sure to add the new loader(s) before the "file" loader.
           ],
         },
       ].filter(Boolean),
@@ -755,6 +756,6 @@ module.exports = function (webpackEnv) {
     ].filter(Boolean),
     // Turn off performance processing because we utilize
     // our own hints via the FileSizeReporter
-    performance: false,
+    performance: false, 
   };
 };

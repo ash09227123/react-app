@@ -2,7 +2,7 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-11-11 16:16:55
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-11-16 15:57:41
+ * @LastEditTime: 2022-11-16 16:01:02
  * @FilePath: \react-app\src\components\MovieInfo\index.jsx
  * @Description:
  *
@@ -33,8 +33,7 @@ const TopFlex = styled.div`
 const MovieInfo = function (props) {
   const { movie } = props;
   const [movieInfo, setMovieInfo] = useState({});
-  useEffect(() => {
-    console.log(movie);
+  useEffect(() => { 
     movie && setMovieInfo(movie);
   }, [movie]);
   const { title, release_date, poster_path, genres, overview ,vote_average} = movieInfo;

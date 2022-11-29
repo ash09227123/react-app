@@ -2,7 +2,7 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-10-17 16:03:27
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-11-08 19:10:16
+ * @LastEditTime: 2022-11-29 15:50:31
  * @FilePath: \react-app\src\components\Catalog\index.jsx
  * @Description:
  *
@@ -10,24 +10,40 @@
  */
 import React, { PureComponent } from "react";
 import SortList from "./component/SortList";
+import { GetMovieList } from "@src/api/moive";
+import { GET_MOVIES } from "@src/store/actions/movieActions";
+import { connect } from "react-redux";
 import "./index.css";
 
 class Catalog extends PureComponent {
   state = {
     cateTypes: [
-      { text: "ALL", checked: false },
-      { text: "DOCUMENTORY", checked: false },
-      { text: "COMEDY", checked: false },
-      { text: "HORROR", checked: false },
-      { text: "CRIME", checked: false },
+      { text: "ALL", lowerText: "", checked: false },
+      { text: "DOCUMENTORY", lowerText: "documentory", checked: false },
+      { text: "COMEDY", lowerText: "comedy", checked: false },
+      { text: "HORROR", lowerText: "horror", checked: false },
+      { text: "CRIME", lowerText: "crime", checked: false },
     ],
+    curCateType: "",
+    sortBy: "",
   };
+
+  componentDidMount() {
+    this.props.getMovies(GetMovieList, {});
+  }
   switchCate(text) {
     let mutatedCateTypes = this.state.cateTypes.map((item) => {
-      item.checked = item.text === text ? true : false;
+      item.checked = item.lowerText === text ? true : false;
       return item;
     });
-    this.setState({ cateTypes: mutatedCateTypes });
+    this.setState({ cateTypes: mutatedCateTypes, curCateType: text });
+    this.props.getMovies(GetMovieList, { sortBy: text });
+  }
+  sortTypehandler(type) {
+    let typeVal = (type.value + "").toLowerCase();
+    this.setState({ sortBy: typeVal }, () => {
+      this.props.getMovies(GetMovieList, { filter: this.state.sortBy });
+    });
   }
   render() {
     return (
@@ -35,10 +51,12 @@ class Catalog extends PureComponent {
         <div className="clasify_wrap">
           <div className="catalog">
             {this.state.cateTypes.map((cate, index) => {
-              const { text, checked } = cate;
+              const { text, lowerText, checked } = cate;
               return (
                 <div
-                  onClick={() => (!checked ? this.switchCate(text) : false)}
+                  onClick={() =>
+                    !checked ? this.switchCate(lowerText) : false
+                  }
                   className={checked ? "selected" : ""}
                   key={index}
                 >
@@ -51,9 +69,11 @@ class Catalog extends PureComponent {
             <div>SORT BY</div>
             <SortList
               options={[
-                { name: "RELEASE DATE", value: 1 },
-                { name: "TIME LENGTH", value: 3 },
+                { name: "GENRE", value: "genre" },
+                { name: "RATING", value: "rating" },
+                { name: "RELEASE DATE", value: "release_date" },
               ]}
+              selectSort={(sort) => this.sortTypehandler(sort)}
             />
           </div>
         </div>
@@ -61,5 +81,17 @@ class Catalog extends PureComponent {
     );
   }
 }
-
-export default Catalog;
+const retirveMoives = (payload) => ({
+  type: GET_MOVIES,
+  payload,
+});
+function mapDispatchtoProps(dispatch) {
+  return {
+    getMovies: (fetchMovies, filters) => {
+      fetchMovies(filters).then((newMovies) =>
+        dispatch(retirveMoives(newMovies))
+      );
+    },
+  };
+}
+export default connect(null, mapDispatchtoProps)(Catalog);

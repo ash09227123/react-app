@@ -2,18 +2,22 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-11-08 18:51:51
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-11-10 14:46:03
+ * @LastEditTime: 2022-11-29 15:50:33
  * @FilePath: \react-app\src\components\Catalog\component\SortList\index.jsx
  * @Description:
  *
  * Copyright (c) 2022 by Paul He Paul_He@epam.com, All Rights Reserved.
  */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import "./index.less";
 
 const SortList = function (props) {
-  const [curType, setCurType] = useState("RELEASE DATE"); 
+  const { selectSort,options = [] } = props; 
+  const [curType, setCurType] = useState(options[0]);
+  useEffect(() => {
+    selectSort(curType);
+  }, [curType]);
   const Arrow = styled.div`
     position: absolute;
     top: 26px;
@@ -27,8 +31,8 @@ const SortList = function (props) {
     transition: all ease-in 0.3s;
   `;
   const SortList = styled.ul`
-    position: absolute;  
-    visibility:hidden;
+    position: absolute;
+    visibility: hidden;
     padding: 0;
     top: 48px;
     width: 150px;
@@ -38,7 +42,7 @@ const SortList = function (props) {
     background-color: rgba(0, 0, 0);
     border-radius: 4px;
     z-index: 9999;
-    opacity:0;
+    opacity: 0;
     transition: all ease-in-out 0.3s;
   `;
   const SortCompoent = styled.div`
@@ -48,9 +52,9 @@ const SortList = function (props) {
         transform: rotate(-90deg) translate(-3px, 3px);
       }
       ${SortList} {
-        visibility:visible; 
-        opacity:1;
-        transform:translate(0px,5px)
+        visibility: visible;
+        opacity: 1;
+        transform: translate(0px, 5px);
       }
     }
   `;
@@ -71,20 +75,20 @@ const SortList = function (props) {
       background-color: #f65261;
     }
   `;
-  const { options = [] } = props;
+
   return (
     <SortCompoent>
-      <CurrentType >{curType}</CurrentType>
+      <CurrentType>{curType.name}</CurrentType>
       <Arrow />
       <SortList>
         {options.map((option) => {
-          const { value, name } = option;
+          const { name} = option;
           return (
             <LiStyle
-              key={value}
-              className={curType === name ? "sort_current" : ""}
+              key={name}
+              className={curType.name === name ? "sort_current" : ""}
               onClick={() => {
-                setCurType(name); 
+                setCurType(option);
               }}
             >
               {name}
