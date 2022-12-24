@@ -126,12 +126,12 @@ const MovieOper = function (props) {
                 });
               }
             } else {
-              // const res = await UpdateMovie(params);
-              // if(res){
+              const res = await UpdateMovie(params);
+              if (res) {
                 bus.emit("eventbus", {
                   updateSucces: true,
                 });
-              // }
+              }
             }
           }}
         >
