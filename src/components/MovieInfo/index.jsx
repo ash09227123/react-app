@@ -2,7 +2,7 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-11-11 16:16:55
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-11-16 16:01:02
+ * @LastEditTime: 2022-12-24 10:13:48
  * @FilePath: \react-app\src\components\MovieInfo\index.jsx
  * @Description:
  *

@@ -2,7 +2,7 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-10-31 11:07:51
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-11-16 15:36:10
+ * @LastEditTime: 2022-12-24 11:40:26
  * @FilePath: \react-app\src\Containers\Home\index.jsx
  * @Description:
  *
@@ -42,7 +42,7 @@ export default function Home() {
           {!isDetail ? (
             <>
               <TopBar />
-              <SearchBar />{" "}
+              <SearchBar />
             </>
           ) : (
             <MovieInfo movie={curMovie} />

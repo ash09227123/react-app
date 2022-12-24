@@ -20,7 +20,6 @@ export default (state = moveState, action) => {
       break;
     default:
       break;
-  }
-  console.log(newState);
+  } 
   return newState;
 };

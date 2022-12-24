@@ -1,11 +1,22 @@
+/*
+ * @Author: Paul He Paul_He@epam.com
+ * @Date: 2022-11-08 17:45:25
+ * @LastEditors: Paul He Paul_He@epam.com
+ * @LastEditTime: 2022-12-24 15:07:19
+ * @FilePath: \react-app\src\components\MyModal\index.jsx
+ * @Description:
+ *
+ * Copyright (c) 2022 by Paul He Paul_He@epam.com, All Rights Reserved.
+ */
 import React from "react";
 
 import { Row, Col } from "../Ranks";
 import styled from "styled-components";
+import bus from "@src/utils/bus";
 import "./index.less";
 
 const MyModal = function (props) {
-  const { title, width, onClose = () => {}, footer } = props; 
+  const { title, width, top, onClose = () => {}, footer } = props;
   const ModalMask = styled.div`
     position: fixed;
     top: 0;
@@ -13,11 +24,10 @@ const MyModal = function (props) {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 9999;
   `;
   const ModalCard = styled.div`
     position: absolute;
-    top: 50%;
+    top: ${top || "50%"};
     left: 50%;
     margin: auto;
     width: ${width || 900}px;
@@ -42,14 +52,7 @@ const MyModal = function (props) {
             <Row gutter="24">
               <Col span={7}></Col>
               <Col span={7} style={{ textAlign: "right" }}>
-                {footer ? (
-                  footer
-                ) : (
-                  <>
-                    <button className="reset">RESET</button>
-                    <button className="submit">SUBMIT</button>
-                  </>
-                )}
+                {footer ? footer : null}
               </Col>
             </Row>
           </div>

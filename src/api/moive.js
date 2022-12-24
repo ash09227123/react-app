@@ -2,7 +2,7 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-11-28 10:44:15
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-11-29 14:41:53
+ * @LastEditTime: 2022-12-24 11:18:49
  * @FilePath: \react-app\src\api\moive.js
  * @Description:
  *
@@ -11,9 +11,25 @@
 import request from "../utils/request";
 
 export const GetMovieList = (params = {}) => {
-  console.log(params);
   return request("/api/movies", {
-    method: "get",
+    method: "GET",
     params,
+  });
+};
+export const CreateMovie = (params = {}) => {
+  return request("/api/movies", {
+    method: "POST",
+    data: params,
+  });
+};
+export const UpdateMovie = (params = {}) => {
+  return request("/api/movies", {
+    method: "PUT",
+    data: params,
+  });
+};
+export const DeleteMovie = (id) => {
+  return request(`/api/movies/${id}`, {
+    method: "DELETE", 
   });
 };

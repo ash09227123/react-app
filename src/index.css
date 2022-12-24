@@ -22,7 +22,7 @@ button {
   border: 0;
   border-radius: 2px;
 }
-button:hover{
+button:hover {
   cursor: pointer;
 }
 button:active {
@@ -30,5 +30,18 @@ button:active {
 }
 section {
   background-color: rgba(0, 0, 0, 0.5);
-  padding: 0 50px; 
+  padding: 0 50px;
+}
+.css-1ptx2yq-MuiInputBase-root-MuiInput-root,
+.css-a3l6o-MuiInputBase-root-MuiInput-root-MuiSelect-root {
+  color: white !important;
+}
+.css-1ptx2yq-MuiInputBase-root-MuiInput-root::before,
+.css-1ptx2yq-MuiInputBase-root-MuiInput-root::after,
+.css-a3l6o-MuiInputBase-root-MuiInput-root-MuiSelect-root::before,
+.css-a3l6o-MuiInputBase-root-MuiInput-root-MuiSelect-root::after {
+  display: none;
+}
+.MuiFormControl-root {
+  margin: 0 !important;
 }

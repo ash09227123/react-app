@@ -2,7 +2,7 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-10-31 18:12:25
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-11-29 17:10:03
+ * @LastEditTime: 2022-12-24 15:06:16
  * @FilePath: \react-app\src\components\MovieCard\index.jsx
  * @overviewription:
  *
@@ -18,7 +18,7 @@ import "./index.less";
 const MovieCard = function (props) {
   const [showOp, setShowOp] = useState(false);
 
-  const { title, release_date, poster_path, genres } = props;
+  const { title, release_date, poster_path, genres, id } = props;
   const onInfoEditHandler = function (e) {
     e.stopPropagation();
     bus.emit("eventbus", {
@@ -30,7 +30,8 @@ const MovieCard = function (props) {
   const onInfoDeleteHandler = function (e) {
     e.stopPropagation();
     bus.emit("eventbus", {
-      msgShow: true,
+      delShow: true,
+      movieId: id,
     });
     setShowOp(false);
   };
@@ -48,6 +49,9 @@ const MovieCard = function (props) {
           className="oper_spot"
           onClick={(e) => {
             e.stopPropagation();
+            bus.emit("eventbus", {
+              movie: { ...props },
+            });
             setShowOp(true);
           }}
         >
@@ -80,7 +84,7 @@ const MovieCard = function (props) {
 
 MovieCard.propTypes = {
   title: PropTypes.string.isRequired,
-  release_date: PropTypes.number.isRequired,
+  release_date: PropTypes.string.isRequired,
   poster_path: PropTypes.string.isRequired,
   overview: PropTypes.string,
 };

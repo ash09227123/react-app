@@ -2,7 +2,7 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-11-08 18:51:51
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-11-29 15:50:33
+ * @LastEditTime: 2022-12-07 18:18:16
  * @FilePath: \react-app\src\components\Catalog\component\SortList\index.jsx
  * @Description:
  *
@@ -13,10 +13,10 @@ import styled from "styled-components";
 import "./index.less";
 
 const SortList = function (props) {
-  const { selectSort,options = [] } = props; 
-  const [curType, setCurType] = useState(options[0]);
+  const { selectSort, options = [] } = props;
+  const [curType, setCurType] = useState();
   useEffect(() => {
-    selectSort(curType);
+    curType && selectSort(curType);
   }, [curType]);
   const Arrow = styled.div`
     position: absolute;
@@ -41,9 +41,9 @@ const SortList = function (props) {
     padding: 10px 0;
     background-color: rgba(0, 0, 0);
     border-radius: 4px;
-    z-index: 9999;
     opacity: 0;
     transition: all ease-in-out 0.3s;
+    z-index: 99;
   `;
   const SortCompoent = styled.div`
     position: relative;
@@ -78,15 +78,15 @@ const SortList = function (props) {
 
   return (
     <SortCompoent>
-      <CurrentType>{curType.name}</CurrentType>
+      <CurrentType>{curType && curType.name}</CurrentType>
       <Arrow />
       <SortList>
         {options.map((option) => {
-          const { name} = option;
+          const { name } = option;
           return (
             <LiStyle
               key={name}
-              className={curType.name === name ? "sort_current" : ""}
+              className={curType && curType.name === name ? "sort_current" : ""}
               onClick={() => {
                 setCurType(option);
               }}

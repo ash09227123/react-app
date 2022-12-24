@@ -2,7 +2,7 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-10-17 16:03:27
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-11-29 15:50:31
+ * @LastEditTime: 2022-12-24 15:07:36
  * @FilePath: \react-app\src\components\Catalog\index.jsx
  * @Description:
  *
@@ -13,12 +13,13 @@ import SortList from "./component/SortList";
 import { GetMovieList } from "@src/api/moive";
 import { GET_MOVIES } from "@src/store/actions/movieActions";
 import { connect } from "react-redux";
+import bus from "@src/utils/bus";
 import "./index.css";
 
 class Catalog extends PureComponent {
   state = {
     cateTypes: [
-      { text: "ALL", lowerText: "", checked: false },
+      { text: "ALL", lowerText: "all", checked: false },
       { text: "DOCUMENTORY", lowerText: "documentory", checked: false },
       { text: "COMEDY", lowerText: "comedy", checked: false },
       { text: "HORROR", lowerText: "horror", checked: false },
@@ -29,6 +30,12 @@ class Catalog extends PureComponent {
   };
 
   componentDidMount() {
+    bus.on("eventbus", (data) => {
+      const { reload } = data;
+      if (reload) {
+        this.props.getMovies(GetMovieList, {});
+      }
+    });
     this.props.getMovies(GetMovieList, {});
   }
   switchCate(text) {
@@ -36,13 +43,20 @@ class Catalog extends PureComponent {
       item.checked = item.lowerText === text ? true : false;
       return item;
     });
-    this.setState({ cateTypes: mutatedCateTypes, curCateType: text });
-    this.props.getMovies(GetMovieList, { sortBy: text });
+    this.setState({ cateTypes: mutatedCateTypes, curCateType: text }, () => {
+      this.props.getMovies(GetMovieList, {
+        sortBy: this.state.curCateType,
+        filter: this.state.sortBy,
+      });
+    });
   }
   sortTypehandler(type) {
     let typeVal = (type.value + "").toLowerCase();
     this.setState({ sortBy: typeVal }, () => {
-      this.props.getMovies(GetMovieList, { filter: this.state.sortBy });
+      this.props.getMovies(GetMovieList, {
+        sortBy: this.state.curCateType,
+        filter: this.state.sortBy,
+      });
     });
   }
   render() {
@@ -81,7 +95,7 @@ class Catalog extends PureComponent {
     );
   }
 }
-const retirveMoives = (payload) => ({
+const retriveMoives = (payload) => ({
   type: GET_MOVIES,
   payload,
 });
@@ -89,7 +103,7 @@ function mapDispatchtoProps(dispatch) {
   return {
     getMovies: (fetchMovies, filters) => {
       fetchMovies(filters).then((newMovies) =>
-        dispatch(retirveMoives(newMovies))
+        dispatch(retriveMoives(newMovies))
       );
     },
   };
