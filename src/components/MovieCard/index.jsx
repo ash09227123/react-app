@@ -2,13 +2,14 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-10-31 18:12:25
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-12-24 15:06:16
+ * @LastEditTime: 2022-12-25 19:35:30
  * @FilePath: \react-app\src\components\MovieCard\index.jsx
  * @overviewription:
  *
  * Copyright (c) 2022 by Paul He Paul_He@epam.com, All Rights Reserved.
  */
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import bus from "../../utils/bus";
 import { scrollToTop } from "@src/utils";
@@ -17,7 +18,7 @@ import "./index.less";
 
 const MovieCard = function (props) {
   const [showOp, setShowOp] = useState(false);
-
+  const navigate = useNavigate();
   const { title, release_date, poster_path, genres, id } = props;
   const onInfoEditHandler = function (e) {
     e.stopPropagation();
@@ -35,7 +36,8 @@ const MovieCard = function (props) {
     });
     setShowOp(false);
   };
-  const onMovieCardClickHandler = function () {
+  const onMovieCardClickHandler = function () { 
+    navigate(`/search/${id}`);
     scrollToTop();
     bus.emit("eventbus", { infoShow: true, movie: { ...props } });
   };

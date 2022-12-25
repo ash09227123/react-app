@@ -2,7 +2,7 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-10-17 13:58:28
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-11-28 15:02:41
+ * @LastEditTime: 2022-12-25 19:22:38
  * @FilePath: \react-app\src\index.js
  * @Description:
  *
@@ -18,11 +18,11 @@ import store from "./store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  // <React.StrictMode>
-  <Provider store={store}>
-    <App />
-  </Provider>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
