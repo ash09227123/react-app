@@ -2,7 +2,7 @@
  * @Author: Paul He Paul_He@epam.com
  * @Date: 2022-11-08 18:51:51
  * @LastEditors: Paul He Paul_He@epam.com
- * @LastEditTime: 2022-12-07 18:18:16
+ * @LastEditTime: 2022-12-27 13:39:20
  * @FilePath: \react-app\src\components\Catalog\component\SortList\index.jsx
  * @Description:
  *
